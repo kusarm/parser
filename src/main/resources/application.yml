@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: parser
+  main:
+    banner-mode: 'off'
+    log-startup-info: 'off'
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${POSTGRES_DB:jdbc:postgresql://localhost:5436/parser?ApplicationName=parser}
+    username: ${POSTGRES_USER:root}
+    password: ${POSTGRES_PASSWORD:rootroot}
+    hikari:
+      maximum-pool-size: ${POOL_SIZE:5}
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        enable_lazy_load_no_trans: true
+        temp.use_jdbc_metadata_defaults: false
+        id.new_generator_mappings: true
+        order_inserts: true
+        order_updates: true
+        javax:
+          cache:
+            missing_cache_strategy: create
+            provider: org.ehcache.jsr107.EhcacheCachingProvider
+        jdbc:
+          lob.non_contextual_creation: true
+          batch_size: 50
+          batch_versioned_data: true
+
+logging:
+  pattern:
+    console:

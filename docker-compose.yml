@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  database:
+    image: "postgres"
+    container_name: "postgres-parser"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=rootroot
+      - POSTGRES_DB=parser
+    ports:
+      - "5436:5432"
+    volumes:
+      - database-data
+
+volumes:
+  database-data:
